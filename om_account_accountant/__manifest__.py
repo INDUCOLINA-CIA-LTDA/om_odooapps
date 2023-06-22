@@ -28,6 +28,7 @@
         'om_account_bank_statement_import',
         'om_account_daily_reports',
         'om_account_followup',
+        'web_responsive',
     ],
     'demo': [],
     'data': [

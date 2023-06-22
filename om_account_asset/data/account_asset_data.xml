@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding='UTF-8'?>
 <odoo>
 
-	<record id="account_asset_cron" model="ir.cron">
+    <record id="account_asset_cron" model="ir.cron">
         <field name="name">Account Asset: Generate asset entries</field>
         <field name="model_id" ref="model_account_asset_asset"/>
         <field name="state">code</field>
@@ -11,5 +11,14 @@
         <field name="numbercall">-1</field>
         <field name="doall" eval="False"/>
     </record>
+
+    <record id="journal_asset" model="account.journal">
+        <field name="name">ACTIVOS</field>
+        <field name="code">ACT</field>
+        <field name="type">general</field>
+        <field name="type">general</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
 
 </odoo>

@@ -149,4 +149,7 @@ class AccountMoveLine(models.Model):
                     rec.asset_category_id = rec.product_id.product_tmpl_id.asset_category_id.id
 
     def get_invoice_line_account(self, type, product, fpos, company):
-        return product.asset_category_id.account_asset_id or super(AccountMoveLine, self).get_invoice_line_account(type, product, fpos, company)
+        return product.asset_category_id.account_asset_id or super(AccountMoveLine, self).get_invoice_line_account(type,
+                                                                                                                   product,
+                                                                                                                   fpos,
+                                                                                                                   company)
