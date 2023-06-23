@@ -138,6 +138,13 @@
                 <field name="name"/>
                 <field name="journal_id"/>
                 <field name="method"/>
+
+                <field name="account_asset_id" optional="show"/>
+                <field name="account_depreciation_id" optional="show"/>
+                <field name="account_depreciation_expense_id" optional="show"/>
+                <field name="method_time" optional="hide"/>
+                <field name="method_number" optional="hide"/>
+                <field name="method_period" optional="hide"/>
                 <field name="company_id" groups="base.group_multi_company"/>
             </tree>
         </field>
