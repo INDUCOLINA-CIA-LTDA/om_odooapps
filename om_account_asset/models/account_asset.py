@@ -189,6 +189,8 @@ class AccountAssetAsset(models.Model):
              'journal entry in case of prorata temporis assets. It simply changes its accounting date'
     )
 
+    icon = fields.Boolean(default=True)
+
     @api.depends('name', 'image_1920')
     def _compute_avatar_1920(self):
         super()._compute_avatar_1920()
@@ -305,7 +307,7 @@ class AccountAssetAsset(models.Model):
                         depreciation_date = depreciation_date + relativedelta(
                             day=int(self.company_id.fiscalyear_last_day))
                         if depreciation_date < self.date:
-                            depreciation_date = depreciation_date + relativedelta(years=1)
+                            depreciation_datefirst_depreciation_manual_date = depreciation_date + relativedelta(years=1)
                 elif self.first_depreciation_manual_date and self.first_depreciation_manual_date != self.date:
                     # depreciation_date set manually from the 'first_depreciation_manual_date' field
                     depreciation_date = self.first_depreciation_manual_date
