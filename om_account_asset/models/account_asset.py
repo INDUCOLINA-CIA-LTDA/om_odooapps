@@ -102,7 +102,7 @@ class AccountAssetCategory(models.Model):
 class AccountAssetAsset(models.Model):
     _name = 'account.asset.asset'
     _description = 'Asset/Revenue Recognition'
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'analytic.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'analytic.mixin', 'avatar.mixin']
 
     entry_count = fields.Integer(compute='_entry_count', string='# Asset Entries')
     name = fields.Char(string='Asset Name', required=True,
@@ -185,6 +185,14 @@ class AccountAssetAsset(models.Model):
         help='Note that this date does not alter the computation of the first '
              'journal entry in case of prorata temporis assets. It simply changes its accounting date'
     )
+
+    @api.depends('name', 'image_1920')
+    def _compute_avatar_1920(self):
+        super()._compute_avatar_1920()
+
+    @api.depends('name', 'image_1920')
+    def _compute_avatar_128(self):
+        super()._compute_avatar_128()
 
     def unlink(self):
         for asset in self:

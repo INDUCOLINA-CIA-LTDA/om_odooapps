@@ -23,11 +23,21 @@
                             <field string="Items" name="entry_count" widget="statinfo"/>
                         </button>
                     </div>
+                    <field name="avatar_128" invisible="1"/>
+                    <div class="o_employee_avatar">
+                        <field name="image_1920" widget='image' class="oe_avatar m-0"
+                               options='{"zoom": true, "preview_image":"image_1920"}'/>
+                    </div>
+
                     <div class="oe_title">
                         <label for="name" class="oe_edit_only"/>
                         <h1>
                             <field name="name" placeholder="e.g. Laptop iBook"/>
                         </h1>
+                        <label for="code" class="oe_edit_only"/>
+                        <h3>
+                            <field name="code" placeholder="e.g. Laptop iBook"/>
+                        </h3>
                     </div>
                     <group>
                         <group>
@@ -132,37 +142,40 @@
                 <field name="category_id"/>
                 <field name="date"/>
                 <field name="state"/>
+                <field name="avatar_128"/>
+                <field name="image_1920"/>
                 <templates>
                     <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_global_click">
-                            <div class="row mb4">
-                                <div class="col-6">
+                        <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban">
+                            <field name="image_1920" class="o_kanban_image_fill_left d-block" preview_image="image_1920"
+                                   widget="background_image" options="{'zoom': true, 'zoom_delay': 1000}"/>
+                            <div class="oe_kanban_details d-flex flex-column justify-content-between">
+                                <div>
                                     <strong>
-                                        <span>
+                                        <h2>
                                             <t t-esc="record.name.value"/>
-                                        </span>
+                                        </h2>
                                     </strong>
+                                    <div class="row mb4">
+                                        <div class="col-6">
+                                            <span>
+                                                <t t-esc="record.category_id.value"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span class="float-right text-end">
+                                                <field name="state" widget="kanban_label_selection"
+                                                       options="{'classes': {'draft': 'primary', 'open': 'success', 'close': 'default'}}"/>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-6 text-end">
-                                    <strong>
-                                        <t t-esc="record.date.value"/>
-                                    </strong>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6 text-muted">
-                                    <span>
-                                        <t t-esc="record.category_id.value"/>
-                                    </span>
-                                </div>
-                                <div class="col-6">
-                                    <span class="float-right text-end">
-                                        <field name="state" widget="kanban_label_selection"
-                                               options="{'classes': {'draft': 'primary', 'open': 'success', 'close': 'default'}}"/>
-                                    </span>
-                                </div>
+
                             </div>
                         </div>
+
                     </t>
                 </templates>
             </kanban>
