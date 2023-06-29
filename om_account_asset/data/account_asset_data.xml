@@ -20,5 +20,13 @@
         <field name="company_id" ref="base.main_company"/>
     </record>
 
+    <record id="seq_account_asset" model="ir.sequence">
+        <field name="name">Sequence Asset</field>
+        <field name="code">seq.account.asset</field>
+        <field name="prefix">ACT/%(year)s/</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
 
 </odoo>

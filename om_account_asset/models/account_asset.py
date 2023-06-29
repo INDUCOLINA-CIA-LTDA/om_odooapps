@@ -109,6 +109,9 @@ class AccountAssetAsset(models.Model):
                        readonly=True, states={'draft': [('readonly', False)]})
     code = fields.Char(string='Reference', size=32, readonly=True,
                        states={'draft': [('readonly', False)]})
+    sequence = fields.Char(string='Sequencia', size=32, readonly=True,
+                           states={'draft': [('readonly', False)]})
+
     value = fields.Monetary(string='Gross Value', required=True, readonly=True,
                             states={'draft': [('readonly', False)]})
     currency_id = fields.Many2one('res.currency', string='Currency', required=True,
@@ -513,6 +516,7 @@ class AccountAssetAsset(models.Model):
     def create(self, vals_list):
         assets = super(AccountAssetAsset, self.with_context(mail_create_nolog=True)).create(vals_list)
         for asset in assets:
+            asset.sequence = self.env['ir.sequence'].next_by_code('seq.account.asset')
             asset.sudo().compute_depreciation_board()
         return assets
 

@@ -26,18 +26,18 @@
                     <field name="avatar_128" invisible="1"/>
                     <div class="o_employee_avatar">
                         <field name="image_1920" widget='image' class="oe_avatar m-0"
-                               options='{"zoom": true, "preview_image":"image_1920"}'/>
+                               options='{"zoom": true, "preview_image":"image_1920", "size": [300,300]}'/>
                     </div>
 
                     <div class="oe_title">
+                        <h2 attrs="{'invisible': [('sequence', '=', False)]}">
+                            <field name="sequence"/>
+                        </h2>
                         <label for="name" class="oe_edit_only"/>
                         <h1>
                             <field name="name" placeholder="e.g. Laptop iBook"/>
                         </h1>
-                        <label for="code" class="oe_edit_only"/>
-                        <h3>
-                            <field name="code" placeholder="e.g. Laptop iBook"/>
-                        </h3>
+
                     </div>
                     <group>
                         <group>
