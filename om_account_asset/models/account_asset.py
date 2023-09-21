@@ -616,7 +616,7 @@ class AccountAssetDepreciationLine(models.Model):
             'debit': 0.0 if float_compare(amount, 0.0, precision_digits=prec) > 0 else -amount,
             'credit': amount if float_compare(amount, 0.0, precision_digits=prec) > 0 else 0.0,
             'partner_id': line.asset_id.partner_id.id,
-            # 'analytic_account_id': account_analytic_id.id if category_id.type == 'sale' else False,
+            'asset_category_id': category_id.id,
             # 'analytic_tag_ids': [(6, 0, analytic_tag_ids.ids)] if category_id.type == 'sale' else False,
             'analytic_distribution': analytic_distribution,
             'currency_id': company_currency != current_currency and current_currency.id or company_currency.id,
