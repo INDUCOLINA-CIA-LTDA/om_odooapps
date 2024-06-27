@@ -189,6 +189,11 @@ class AccountAssetAsset(models.Model):
              'journal entry in case of prorata temporis assets. It simply changes its accounting date'
     )
 
+    ubicacion = fields.Char("Ubicación", required=False)
+    sector = fields.Char("Sector", required=False)
+    sub_sector = fields.Char("Sub Sector", required=False)
+    desc_sector = fields.Char("Descripción Sector", required=False)
+
     icon = fields.Boolean(default=True)
 
     @api.depends('name', 'image_1920')
