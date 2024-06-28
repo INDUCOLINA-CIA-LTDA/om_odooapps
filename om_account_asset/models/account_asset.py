@@ -151,7 +151,7 @@ class AccountAssetAsset(models.Model):
     method_end = fields.Date(string='Ending Date', readonly=True, states={'draft': [('readonly', False)]})
     method_progress_factor = fields.Float(string='Degressive Factor',
                                           readonly=True, default=0.3, states={'draft': [('readonly', False)]})
-    value_residual = fields.Monetary(compute='_amount_residual', string='Residual Value')
+    value_residual = fields.Monetary(compute='_amount_residual', string='Residual Value', store=True)
     method_time = fields.Selection([('number', 'Number of Entries'), ('end', 'Ending Date')],
                                    string='Time Method', required=True, readonly=True, default='number',
                                    states={'draft': [('readonly', False)]},
@@ -228,6 +228,13 @@ class AccountAssetAsset(models.Model):
             assets = self.env['account.asset.asset'].search(
                 [('state', '=', 'open'), ('category_id', '=', grouped_category.id)])
             created_move_ids += assets._compute_entries(date, group_entries=True)
+        
+        all_assets = self.env['account.asset.asset'].search([('state', '=', 'open')])
+        for asset in all_assets:
+            asset._amount_residual
+            if asset.value_residula == 0:
+                asset.state = 'close'
+        
         return created_move_ids
 
     def _compute_board_amount(self, sequence, residual_amount, amount_to_depr,
