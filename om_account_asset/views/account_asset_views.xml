@@ -122,6 +122,12 @@
                                        attrs="{'required': [('method_time','=','end')],
                                                'invisible':[('method_time','=','number')]}"/>
                             </group>
+                            <group>
+                                <field name="ubicacion"/>
+                                <field name="sector"/>
+                                <field name="sub_sector"/>
+                                <field name="desc_sector"/>
+                            </group>
                         </page>
                     </notebook>
                 </sheet>
