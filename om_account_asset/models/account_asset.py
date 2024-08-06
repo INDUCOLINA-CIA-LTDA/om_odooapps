@@ -237,7 +237,7 @@ class AccountAssetAsset(models.Model):
         all_assets = self.env['account.asset.asset'].search([('state', '=', 'open')])
         for asset in all_assets:
             asset._amount_residual
-            if asset.value_residula == 0:
+            if asset.value_residual == 0:
                 asset.state = 'close'
         
         return created_move_ids
